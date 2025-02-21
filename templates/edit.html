@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Редактировать продукт</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Редактировать продукт</h1>
+    <form action="{{ url_for('edit_product', product_id=product.id) }}" method="post">
+        <input type="text" name="name" value="{{ product.name }}" required>
+        <input type="number" name="quantity" value="{{ product.quantity }}" required>
+        <button type="submit">Сохранить</button>
+    </form>
+    <a href="{{ url_for('index') }}">Отмена</a>
+</body>
+</html>

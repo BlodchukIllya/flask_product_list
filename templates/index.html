@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Список продуктов</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Список продуктов</h1>
+
+    <!-- Форма добавления нового продукта -->
+    <form action="/add" method="post">
+        <input type="text" name="name" placeholder="Название продукта" required>
+        <input type="number" name="quantity" placeholder="Количество" required>
+        <button type="submit">Добавить</button>
+    </form>
+
+    <!-- Список продуктов -->
+    <ul>
+        {% for product in products %}
+            <li>
+                {{ product.name }} - {{ product.quantity }}
+                <a href="{{ url_for('edit_product', product_id=product.id) }}" class="edit-btn">✏ Изменить</a>
+                <a href="{{ url_for('delete_product', product_id=product.id) }}" class="delete-btn">❌ Удалить</a>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
